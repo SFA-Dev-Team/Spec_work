@@ -5,26 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>testing</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    
 </head>
 <body>
     <header>
          <div id="logo">
-            <img src="/assets/logo.png" alt="logo">
+            <a href="#"><img src="/assets/logo.png" alt="logo"></a>
         </div>
-        <nav>
+
+        <!-- Stylish Hamburger Icon -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+
+        <nav id="nav-menu">
             <ul>
                 <li><a href="#">Patients</a></li>
                 <li><a href="#">Healthcare Professionals</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Careers</a></li>
                 <li><a href="#">Investors</a></li>
+                <li><div class="search-box">
+                  <input class="search-input" type="text" name="" placeholder="Search..">
+                  <a href="#" class="search-btn">
+                    <i class="fas fa-search"></i>
+                  </a>     
+                  </div>
+                </li>
             </ul>
         </nav>
-         <div class="search-bar">
-            <button>🔍</button>
-        </div>
     </header>
     <section class="b1" >
         <img src="/assets/image1.png" alt="Improving Care When It Matters">
@@ -32,8 +50,6 @@
             <h1>Improving Care</h1>
             <h2>When It Matters</h2>
             <p>Angiodynamics believes that people living with society’s most challenging diseases deserve trusted medical solutions that deliver high-quality treatments and to live healthier, happier lives.</p>
-            <p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            </p>
             <p class="company-commitment">The company’s commitment to advancing medical solutions has established a strong presence in key healthcare markets worldwide. Through strategic partnerships, distribution networks, and a diverse product portfolio, Angiodynamics continues to contribute to the improvement of patient outcomes on a global scale.</p>
         </div>
     </section>
@@ -86,23 +102,24 @@
             </div>
                 <div class="card" id="c2">
                 <h3>
-                    “It gave us our grandfather back.”
+                    “I didn’t want to lose my dad.”
                 </h3>
-                <p>Bryanna, an AngioDynamics employee, talks about her grandpa’s experience with Peripheral Arterial Disease and treatment with the Auryon System.</p>
+                <p>John, a PGA Tour pro, shares his story about his fight with Stage III pancreatic cancer.</p>
                 <a href="">Watch Story</a>
             </div>
                 <div class="card" id="c3">
                 <h3>
-                    “It gave us our grandfather back.”
+                   “There is hope…”
                 </h3>
-                <p>Bryanna, an AngioDynamics employee, talks about her grandpa’s experience with Peripheral Arterial Disease and treatment with the Auryon System.</p>
+                <p>A patient of the AngioVac system and avid gardener, Shirley Lewis, shares her treatment journey.</p>
                 <a href="">Watch Story</a>
             </div>
         </div>
         
     </section>
-    <section id="s4">
-        <h3 id="c2_title">Advancing care</h3>
+    <section id="sec_main">
+      <section id="s4">
+        <h3 id="c2_title">Advancing Care</h3>
         <div id="card2">
             <div id="subc1" class="sc">
                 <img src="/assets/img4.png" alt="img4">
@@ -167,10 +184,13 @@
     </div>
   </div>
 </section>
+      
+    </section>
+    
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-left">
-        <img src="/assets/logo.png" alt="logo">
+        <a href="#"><img src="/assets/logo.png" alt="logo"></a>
         <div class="social-icons">
           <a href="#">f</a>
           <a href="#">x</a>
@@ -211,6 +231,15 @@
 
 
 </body>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active'); // Animates the icon
+    navMenu.classList.toggle('show');     // Toggles the nav menu
+  });
+</script>
 
 
 </html>
