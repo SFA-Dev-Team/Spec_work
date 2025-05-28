@@ -11,12 +11,10 @@ body{
 
 header{
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     background: rgba(55, 25, 113, 0.5);
-    height: 10vh;
-    padding-left: 10vw;
-    padding-right: 11vw;
+    padding: 1vh 10vw;
 }
 /* --- Hamburger Button --- */
 .hamburger {
@@ -75,60 +73,37 @@ nav ul{
 
 .search-box {
     background: white;
-    height: 1vh;
+    width: 5vw;
     border-radius: 40px;
-    padding: 1.25vh;
+    padding: 0.25vh 1vw;
     display: flex;
     align-items: center;
-    position: relative; 
+    position: relative;
     overflow: hidden;
-    width: clamp(0.25vw,0.75vw,1vw);
-    transition: width 0.4s ease; 
-}
-
-.search-btn {
-    color: black;
-    width: 2vw; 
-    height: 1vh;
-    border-radius: 50%;
-    background: white;
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    z-index: 2; 
-    cursor: pointer; 
-}
-
-.fa-search {
-    font-size: 1.1rem;
+    margin-right: 1vw;
 }
 
 .search-input {
     border: none;
-    background: none;
+    background: transparent;
     outline: none;
-    padding: 0;
-    color: white;
-    font-size:  1.1rem;
-    line-height: 2vh;
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    width: 0; 
-    transition: width 0.4s ease, padding 0.4s ease; 
-    z-index: 1; 
-    opacity: 0; 
+    color: black;
+    font-size: 0.75rem;
+    width: 100%;
 }
 
-.search-box:hover {
-    width: 10vw; 
+.search-btn {
+    color: black;
+    background: transparent;
+    border: none;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
-.search-box:hover > .search-input {
-    width: 10vw;
-    padding: 0 2vw;
-    opacity: 1; 
-}
 
 .b1 {
     position: relative;
@@ -648,11 +623,16 @@ input, textarea {
         line-height: 1;
     }
     header{
-        grid-template-columns: 1fr 0fr;
+       display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        padding: 1vh 5vw;
+        gap: 2vw;
+        position: relative;
     }
      nav {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         width: 50%;
@@ -679,11 +659,49 @@ input, textarea {
         margin: 10px 0;
     }
 
-    .hamburger {
-        display: flex;
+   #logo {
+  order: 1;
+}
+
+.search-box {
+  order: 2;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+.hamburger {
+  order: 3;
+  justify-self: end;
+  display: flex;
+}
+}
+@media (max-width:1259.98px) and (min-width: 1030px){
+    .search-box
+    {
+    width: 7vw;
+    }
+    nav a{
+        font-size: 1rem;
+    }
+    nav ul{
+        gap: 1vw;
+    }
+}
+@media (max-width:1029.98px) and (min-width: 778.98px){
+    .search-box
+    {
+    width: 7vw;
+    }
+    nav a, .search-btn{
+        font-size: 0.75rem;
+    }
+    nav ul{
+        gap: 1vw;
     }
 }
 @media (max-width:1259.98px) and (min-width:992px){
+    
     .info{
         padding: 8vh 2vw;
     }
@@ -751,7 +769,7 @@ input, textarea {
 @media (max-width:776.98px) and (min-width:576px){
     header{
         margin: 0px;
-        padding: 0 10vw;
+        padding: 1vh 10vw;
     }
     header nav{
         display: none;
