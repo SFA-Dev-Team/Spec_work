@@ -21,8 +21,8 @@ header{
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  width: 3vw;
+  height: 3vh;
   cursor: pointer;
   position: relative;
   left: 0;
@@ -30,7 +30,7 @@ header{
 }
 
 .hamburger span {
-  height: 3px;
+  height: 0.25vh;
   width: 100%;
   background-color: white;
   border-radius: 3px;
@@ -624,7 +624,7 @@ input, textarea {
     }
     header{
        display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto auto auto;
         align-items: center;
         padding: 1vh 5vw;
         gap: 2vw;
@@ -660,21 +660,22 @@ input, textarea {
     }
 
    #logo {
-  order: 1;
-}
+        order: 1;
+    }
 
-.search-box {
-  order: 2;
-  width: 100%;
-  max-width: 150px;
-  margin: 0 auto;
-}
+    .search-box {
+        order: 2;
+        width: 100%;
+        max-width: 20vw;
+        margin: 0 auto;
+        justify-self: end;
+    }
 
-.hamburger {
-  order: 3;
-  justify-self: end;
-  display: flex;
-}
+    .hamburger {
+        order: 3;
+        justify-self: end;
+        display: flex;
+    }
 }
 @media (max-width:1259.98px) and (min-width: 1030px){
     .search-box
@@ -826,7 +827,9 @@ input, textarea {
 
 }
 @media (max-width:575.98px) {
-
+    .hamburger{
+        width: 5vw;
+    }
     #logo img{
         width: 40vw;
     }
