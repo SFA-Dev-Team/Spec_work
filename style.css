@@ -164,19 +164,45 @@ nav ul{
     padding-top: 1vh;
 }
 #s2{
-    background-color: white;
+    background-color: rgba(245, 245, 245, 1);
     width: 100%;
     color: black;
     display: grid;
-     grid-template-rows: auto auto;
+    grid-template-rows: auto auto;
     grid-template-areas: 
     "d1"
     "d2";
     padding: 5vh 0;
-    gap: 0px;
+    gap: 10vh;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+#s2::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Make it occupy the top half of the section */
+    background-image: url('./assets/Vector2.svg'); /* <--- IMPORTANT: Update this path */
+    background-size: cover; /* or contain, or 100% 100%, depending on how you want it to scale */
+    background-repeat: no-repeat;
+    background-position: center bottom; /* Position the background image at the top */
+    z-index: -2; /* Ensure it's behind the content and potentially any other background layers */
+}
+#svg {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: pink;
+  z-index: -1;
+  clip-path: path("M-314,267 C105,364 400,100 812,279 L812,500 L-314,500 Z");
 }
 #s2 h3{
     font-size: 2rem;
+    margin: 0px;
 }
 #s2 p{
     font-size: 1.2rem;
@@ -188,17 +214,18 @@ nav ul{
 }
 .text-box img{
     text-align: center;
-    width: 100%;
+    width: 30vw;
     object-fit: fill;
-    height: 30vh;
+    height: 40vh;
     border-radius: 20px;
+    justify-self: center;
 }
 
 #d1{
     grid-area: d1;
     display: grid;
     grid-template-areas: 'img2 t1';
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2vw;
     align-items: flex-start;
 }
@@ -206,7 +233,7 @@ nav ul{
     grid-area: d2;
     display: grid;
     grid-template-areas: 't2 img3';
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: 2vw;
     align-items: flex-start;
 }
@@ -220,6 +247,7 @@ nav ul{
 #img3{
     grid-area: img3;
     margin: auto 0;
+    width: 40vw;
 }
 #t2{
     grid-area: t2;
@@ -283,6 +311,14 @@ nav ul{
     text-align: center;
     padding: 20px;
     font-size: 2rem;
+}
+.wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
 }
 #s3{
     height: auto;
@@ -471,9 +507,23 @@ input, textarea {
     color: white;
     padding: 3vh 10vw 0px 10vw;
 }
+.footer::before{
+     content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    background-image: url('./assets/top-swoosh.svg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom; 
+    transform: translateY(-50%); 
+}
 
 .footer-grid {
     display: grid;
+    position: relative;
+z-index: 1;
     grid-template-columns: 1fr 3fr;
     gap: 40px;
     align-items: start;
@@ -535,6 +585,8 @@ input, textarea {
     padding-top: 1vh;
     font-size: 1rem;
     color: #eee;
+    position: relative;
+    z-index: 1;
 }
 .footer-bottom a {
     color: #fff;
