@@ -15,7 +15,8 @@
 </head>
 <body>
     <header>
-         <div id="logo">
+      <div id="main_nav">
+        <div id="logo">
             <a href="#"><img src="/assets/logo.png" alt="logo"></a>
         </div>
 
@@ -44,6 +45,8 @@
             <i class="fas fa-search"></i>
           </a>     
           </div>
+      </div>
+         
     </header>
     <section class="b1" >
         <img src="/assets/image1.png" alt="Improving Care When It Matters">
@@ -53,6 +56,13 @@
             <p>Angiodynamics believes that people living with society’s most challenging diseases deserve trusted medical solutions that deliver high-quality treatments and to live healthier, happier lives.</p>
             <p class="company-commitment">The company’s commitment to advancing medical solutions has established a strong presence in key healthcare markets worldwide. Through strategic partnerships, distribution networks, and a diverse product portfolio, Angiodynamics continues to contribute to the improvement of patient outcomes on a global scale.</p>
         </div>
+        <a href="#s2" class="scroll-down">
+          <!--<img src="/assets/arrow-down-circle.svg" alt="arrow">-->
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+          </svg>
+        </a>
+
     </section>
     <section id="s2">
         <!--<svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="-300 0 950 135" >
@@ -67,7 +77,7 @@
                 <p>
                     At AngioDynamics, we provide tools and solutions to address some of the most critical and prevalent disease states. Through the initiation of clinical studies and development of innovative technologies, we contribute our best each and every day to meet the needs of patients and their healthcare providers.
                 </p>
-                <button class="btn"><a href="">Leran More</a></button>
+                <button class="btn"><a href="">Learn More</a></button>
             </div>
         </div>
          <div class="text-box" id="d2">
@@ -183,7 +193,7 @@
           </div>
         </div>
         <div class="btn-container">
-            <button class="btn" type="submit" id="btn1"><a href="">submit</a></button>
+            <button class="btn" type="submit" id="btn1"><a href="">Submit</a></button>
         </div>
       </form>
     </div>
@@ -237,13 +247,32 @@
 
 </body>
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
+  const header = document.querySelector('header');
+    const scrollThreshold = 50; // Number of pixels scrolled before changing background
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active'); // Animates the icon
-    navMenu.classList.toggle('show');     // Toggles the nav menu
-  });
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Existing hamburger menu and scroll-down button scripts
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active'); // Animates the icon
+        navMenu.classList.toggle('show');      // Toggles the nav menu
+    });
+    
+    document.querySelector('.scroll-down').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 </script>
 
 

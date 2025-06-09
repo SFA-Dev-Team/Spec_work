@@ -1,19 +1,46 @@
+html {
+  scroll-behavior: smooth;
+}
 
 body{
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
+    /*background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);*/
     color: white;
     min-height: 100vh;
     font-size: 100%;
 }
-
+/* New: A fixed background for the entire page */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
+    z-index: -1; /* Send it behind everything */
+}
 header{
-    display: grid;
-    grid-template-columns: auto 1fr auto;
     align-items: center;
     background: rgba(55, 25, 113, 0.5);
+    position: sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    box-sizing: border-box;
+}
+header.scrolled {
+    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
+    /* You might want to add a subtle box-shadow for depth when scrolled */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+#main_nav{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     padding: 1vh 10vw;
 }
 /* --- Hamburger Button --- */
@@ -49,7 +76,9 @@ header{
 .hamburger.active span:nth-child(3) {
   transform: translateY(-9px) rotate(-45deg);
 }
-
+#logo{
+    margin: auto;
+}
 
 #logo img{
     width: 15vw;
@@ -74,6 +103,7 @@ nav ul{
 .search-box {
     background: white;
     width: 5vw;
+    height: 50%;
     border-radius: 40px;
     padding: 0.25vh 1vw;
     display: flex;
@@ -81,6 +111,7 @@ nav ul{
     position: relative;
     overflow: hidden;
     margin-right: 1vw;
+    margin: auto;
 }
 
 .search-input {
@@ -110,7 +141,7 @@ nav ul{
     height: 70vh;
     overflow: hidden;
     text-align: center;
-    margin-top: 1.5vh;
+    margin-top: 2vh;
     margin-left: 10vw;
     margin-right: 10vw;
     border-top-left-radius: 40px;
@@ -148,7 +179,7 @@ nav ul{
 }
 
 .info h2 {
-    font-size: 2.75rem;
+    font-size: 2.9rem;
 }
 
 .info p {
@@ -157,12 +188,36 @@ nav ul{
     line-height: clamp(1,1.5,2);
     margin-left: 10vw;
     margin-right: 10vw;
-    text-align: justify;
 }
 .company-commitment{
     border-top: 1px solid white;
     padding-top: 1vh;
 }
+
+/* Position the arrow button at bottom center of hero */
+.scroll-down {
+  position: inherit;
+  width: 20%;
+  height: 6.5%;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #05B9FC, #A11BCC);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.scroll-down svg{
+    width: 13%;
+    position: inherit;
+    transform: translateY(0%);
+    top: -50%;
+    object-fit: fill;
+}
+
 #s2{
     background-color: rgba(245, 245, 245, 1);
     width: 100%;
@@ -671,10 +726,7 @@ z-index: 1;
         display: flex;
         padding: 0%;
     }
-    .info p{
-        line-height: 1;
-    }
-    header{
+    #main_nav{
        display: grid;
         grid-template-columns: auto auto auto;
         align-items: center;
@@ -742,6 +794,14 @@ z-index: 1;
     }
 }
 @media (max-width:1029.98px) and (min-width: 778.98px){
+    .scroll-down{
+        width: 30%;
+        height: 5%;
+        bottom: 3.95vh;
+    }
+    .scroll-down svg{
+        width: 20%;
+    }
     .search-box
     {
     width: 7vw;
@@ -820,11 +880,19 @@ z-index: 1;
      
 }
 @media (max-width:776.98px) and (min-width:576px){
-    header{
+     .scroll-down{
+        width: 30%;
+        height: 5%;
+        bottom: 3.95vh;
+    }
+    .scroll-down svg{
+        width: 20%;
+    }
+    #main_nav{
         margin: 0px;
         padding: 1vh 10vw;
     }
-    header nav{
+    #main_nav nav{
         display: none;
     }
     #logo img{
@@ -879,6 +947,14 @@ z-index: 1;
 
 }
 @media (max-width:575.98px) {
+     .scroll-down{
+        width: 30%;
+        height: 5%;
+        bottom: 3.95vh;
+    }
+    .scroll-down svg{
+        width: 20%;
+    }
     .hamburger{
         width: 5vw;
     }
