@@ -99,7 +99,100 @@ nav ul{
     align-items: center;
     gap: 2vw;
 }
+.dropdown{
+    position: relative;
+}
 
+/* Basic styling for the dropdown menu */
+.dropdown-menu {
+    margin-top:1vh;
+    display: none; /* Hidden by default */
+    position: absolute; /* Position it relative to the parent li */
+    background: black;
+    width: 20vw; /* Adjust width as needed */
+    z-index: 1; /* Ensure it appears above other content */
+    list-style: none; /* Remove default list bullets */
+    border-radius: 8px; 
+    overflow: hidden; 
+    opacity: 0;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    transform: translateY(-10px); 
+    padding: 0%;
+}
+
+.dropdown-menu li {
+    padding: 2vh 2vw;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    transition: background 0.2s ease-in-out; /* Smooth transition for hover effect */
+    font-size: 0.95rem; /* Slightly smaller font for menu items */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.dropdown-menu li:hover {
+    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);  /* Slightly darker purple on hover */
+}
+
+/* Show the dropdown menu on hover or focus of the parent .dropdown li */
+.dropdown:hover .dropdown-menu {
+    display: block !important;
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Slide down to original position */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4); /* Darker shadow for depth */
+}
+
+/* You can also add a subtle rotation to the chevron icon when the dropdown is open */
+.dropdown:hover .bi-chevron-down {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-out;
+}
+
+.dropdown .bi-chevron-down {
+    padding-left: 0.25vw;
+    transition: transform 0.3s ease-out; /* Add transition for smooth rotation back */
+}
+
+
+/* Adjustments to the parent link for a better visual */
+.dropdown > a {
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the dropdown header (if you choose to add one) */
+.dropdown-menu .dropdown-header {
+    font-weight: bold;
+    color: #ccc; /* Lighter color for header */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Optional: If you want to use the JavaScript click functionality, you'll need to control display via JS.
+   In that case, remove 'display: block;' from .dropdown:hover .dropdown-menu and manage it with a class, e.g., 'dropdown-open' */
+.dropdown.dropdown-open .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+.submenu{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#health:hover > .dropdown-menu, #health.dropdown-open > .dropdown-menu {
+    display: block; /* Show on hover */
+    width: max-content; /* Apply max-content width */
+    transform: translateX(-30%); /* Apply translation */
+    /* Add any transition for smooth effect, e.g.: */
+    transition: all 0.3s ease-in-out;
+}
+#health .submenu h3 {
+    padding: 0 2vw;
+}
 .search-box {
     background: white;
     width: 5vw;
@@ -721,7 +814,7 @@ z-index: 1;
         grid-template-columns: 1fr;
     }
 }
-@media (max-width: 777px){
+@media (max-width: 778px){
      .info{
         display: flex;
         padding: 0%;
@@ -735,20 +828,33 @@ z-index: 1;
         position: relative;
     }
      nav {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
-        z-index: 1000;
-        transition: max-height 0.3s ease-in-out;
-    }
+    position: fixed;
+    top: 0;
+    right: -100%;
+    /* Start off-screen to the right */
+    width: 100%;
+    height: 100%;
+    /* Full viewport height */
+    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+    /* Smooth transition for sliding */
+    display: block;
+    /* Keep it as 'block' so transitions work */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Improves scrolling performance on iOS */
+  }
 
-    nav.show {
-        display: block;
-    }
+  nav.show {
+    right: 0;
+    /* Slide into view when 'show' class is present */
+  }
+  .submenu{
+    display: grid;
+    grid-template-columns: 1fr;
+}
 
     nav ul {
         display: flex;
@@ -761,6 +867,7 @@ z-index: 1;
     nav ul li {
         text-align: left;
         margin: 10px 0;
+        width: 100%;
     }
 
    #logo {
@@ -780,8 +887,40 @@ z-index: 1;
         justify-self: end;
         display: flex;
     }
+    .dropdown .dropdown-menu {
+        position: static; /* Stack dropdowns normally within the mobile menu */
+        background: rgba(0, 0, 0, 0.3); /* Slightly different background for sub-menu */
+        width: 100%; /* Take full width */
+        box-shadow: none;
+        padding-left: 10px; /* Indent sub-menu items */
+        opacity: 1; /* Ensure visible when opened by JS */
+        transform: translateY(0); /* Reset any transform */
+    }
+
+    /* Disable hover effect for mobile dropdowns, rely on JS click */
+    .dropdown:hover .dropdown-menu {
+        display: none !important; /* Hide on hover for mobile, JS will control */
+    }
+    .dropdown.dropdown-open .dropdown-menu {
+        display: block !important; 
+        margin: 0%;
+        padding: 0%;
+        margin-top: 1%;
+    }
+
+    /* Specific to #health dropdown in mobile */
+    #health:hover > .dropdown-menu, #health.dropdown-open > .dropdown-menu {
+        transform: none; /* Remove horizontal translation for mobile */
+        width: 100%; /* Ensure it takes full width in mobile menu */
+    }
 }
 @media (max-width:1259.98px) and (min-width: 1030px){
+    #health:hover > .dropdown-menu, #health.dropdown-open > .dropdown-menu{
+        transform: translateX(-35%);
+    }
+    #health .submenu h3{
+        font-size: medium;
+    }
     .search-box
     {
     width: 7vw;
@@ -794,6 +933,15 @@ z-index: 1;
     }
 }
 @media (max-width:1029.98px) and (min-width: 778.98px){
+     #health:hover > .dropdown-menu, #health.dropdown-open > .dropdown-menu{
+        transform: translateX(-35%);
+    }
+    #health .submenu h3{
+        font-size: small;
+    }
+    .dropdown-menu li a{
+        font-size: 0.75rem;
+    }
     .scroll-down{
         width: 30%;
         height: 5%;
@@ -841,6 +989,11 @@ z-index: 1;
     
 }
 @media (max-width:991.98px) and (min-width: 777px){
+    nav ul{
+        gap: 0.75vw;
+    }
+    .dropdown .bi-chevron-down {
+    padding-left: 0.15vw;}
     .info{
         padding: 8vh 2vw;
     }
@@ -891,9 +1044,6 @@ z-index: 1;
     #main_nav{
         margin: 0px;
         padding: 1vh 10vw;
-    }
-    #main_nav nav{
-        display: none;
     }
     #logo img{
         width: 30vw;

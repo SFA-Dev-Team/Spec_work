@@ -30,9 +30,63 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="#">Patients</a></li>
-                <li><a href="#">Healthcare Professionals</a></li>
-                <li><a href="#">About Us</a></li>
+               <li class="dropdown">
+                <a href="#">Patients <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                </svg></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Blood Flow Restoration</a></li>
+                  <li><a href="#">Oncology</a></li>
+                  <li><a href="#">Living with Ports</a></li>
+                  <li><a href="#">Varicose Vein Treatment</a></li>
+                  <li><a href="#">Clinical Studies & Research</a></li>
+                  <li><a href="#">Improving Care</a></li>
+                  <li><a href="#">Patient Stories</a></li>
+                </ul>
+              </li>
+                <li class="dropdown" id="health"><a href="#">Healthcare Professionals <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></svg></a>
+                <ul class="dropdown-menu">
+                  <div class="submenu">
+                    <div>
+                      <h3>Patient-Focused Information</h3> 
+                      <li><a href="#">Pulmonary Embolism</a></li>
+                      <li><a href="#">Oncology</a></li>
+                      <li><a href="#">Chronic Venous Insufficiency</a></li>
+                      <li><a href="#">Infusion Therapies and Medication Delivery</a></li>
+                      <li><a href="#">Percutaneous Drainage</a></li>
+                      <li><a href="#">Peripheral Arterial Disease</a></li>
+                      <li><a href="#">Procedural Support Devices</a></li>
+                      <li><a href="#">Thrombus Management</a></li>
+                    </div>
+                    <div>
+                      <h3>Healthcare Professional-Focused Information</h3> 
+                      <li><a href="#">Clinical Studies & Research</a></li>
+                      <li><a href="#">Scientific & Clinical Affairs</a></li>
+                      <li><a href="#">Reimbursement Resources</a></li>
+                      <li><a href="#">Transparency Reporting</a></li>
+                      <li><a href="#">Improving Care</a></li>
+                      <li><a href="#">Contact Us</a></li>
+                    </div>
+                  </div>
+                </ul>
+
+                </li>
+                <li class="dropdown">
+                  <a href="#">About Us <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                  </svg></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">About Us Overview</a></li> 
+                      <li><a href="#">News & Events</a></li>
+                      <li><a href="#">Leadership</a></li>
+                      <li><a href="#">Our Dynamic People</a></li>
+                      <li><a href="#">Investor Relations</a></li>
+                      <li><a href="#">Intellectual Property</a></li>
+                      <li><a href="#">Locations</a></li>
+                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="#">Product Portfolio</a></li> 
+                    </ul>
+                </li>
                 <li><a href="#">Careers</a></li>
                 <li><a href="#">Investors</a></li>
 
@@ -273,6 +327,55 @@
             behavior: 'smooth'
         });
     });
+    document.addEventListener('DOMContentLoaded', function() {
+    // Select ALL elements with the class 'dropdown'
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    // Iterate over each dropdown found
+    dropdowns.forEach(dropdown => {
+        // Find the dropdown menu and its main link specific to this dropdown
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        const dropdownLink = dropdown.querySelector('a'); // The main link for the dropdown
+
+        // Ensure both elements exist for this specific dropdown
+        if (dropdownLink && dropdownMenu) {
+            dropdownLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the link from navigating
+                event.stopPropagation(); // Prevent this click from immediately closing other dropdowns
+
+                // Close any other open dropdowns first
+                dropdowns.forEach(otherDropdown => {
+                    const otherDropdownMenu = otherDropdown.querySelector('.dropdown-menu');
+                    if (otherDropdown !== dropdown && otherDropdownMenu && otherDropdownMenu.style.display === 'block') {
+                        otherDropdownMenu.style.display = 'none';
+                        otherDropdown.classList.remove('dropdown-open'); // Remove class if using
+                    }
+                });
+
+                // Toggle the display of the current dropdown menu
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                    dropdown.classList.remove('dropdown-open'); // Remove class if using
+                } else {
+                    dropdownMenu.style.display = 'block';
+                    dropdown.classList.add('dropdown-open'); // Add class for potential CSS transitions
+                }
+            });
+        }
+    });
+
+    // Close any open dropdowns if a click occurs outside of any dropdown
+    document.addEventListener('click', function(event) {
+        dropdowns.forEach(dropdown => {
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            // Check if the dropdown menu is open AND the click was outside of this specific dropdown
+            if (dropdownMenu && dropdownMenu.style.display === 'block' && !dropdown.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+                dropdown.classList.remove('dropdown-open');
+            }
+        });
+    });
+});
 </script>
 
 
