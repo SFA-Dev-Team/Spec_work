@@ -101,11 +101,13 @@ nav ul{
 }
 .dropdown{
     position: relative;
+    padding-bottom: 1vh;
 }
 
 /* Basic styling for the dropdown menu */
 .dropdown-menu {
-    margin-top:1vh;
+    margin-top:0%;
+    top: 100%;
     display: none; /* Hidden by default */
     position: absolute; /* Position it relative to the parent li */
     background: black;
