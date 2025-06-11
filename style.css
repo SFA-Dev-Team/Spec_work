@@ -6,22 +6,13 @@ body{
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    /*background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);*/
+    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
     color: white;
     min-height: 100vh;
     font-size: 100%;
 }
 /* New: A fixed background for the entire page */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(105.31deg, #05B9FC 2.63%, #371971 41.11%, #710AB6 78.34%, #A11BCC 93.76%);
-    z-index: -1; /* Send it behind everything */
-}
+
 header{
     align-items: center;
     background: rgba(55, 25, 113, 0.5);
@@ -251,6 +242,11 @@ nav ul{
     object-fit: cover;
     margin-left: 0px;
     margin-right: 0px;
+}
+.background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire area */
 }
 
 .info {
